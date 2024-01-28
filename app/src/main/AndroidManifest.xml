@@ -13,6 +13,11 @@
         android:theme="@style/Theme.AndroidiApplikaatio"
         tools:targetApi="31">
         <activity
+            android:name=".BottomBar"
+            android:exported="false"
+            android:label="@string/title_activity_bottom_bar"
+            android:theme="@style/Theme.AndroidiApplikaatio" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"

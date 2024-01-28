@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Androidi applikaatio</string>
+    <string name="title_activity_bottom_bar">BottomBar</string>
 </resources>
