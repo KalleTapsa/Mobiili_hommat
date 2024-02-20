@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
     <application
+        android:name=".Notifications"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -12,11 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidiApplikaatio"
         tools:targetApi="31">
-        <activity
-            android:name=".BottomBar"
-            android:exported="false"
-            android:label="@string/title_activity_bottom_bar"
-            android:theme="@style/Theme.AndroidiApplikaatio" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -28,6 +27,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AlertDetails"
+            android:exported="true">
+        </activity>
+        <service
+            android:name=".LuxSensorService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync">
+        </service>
     </application>
 
 </manifest>

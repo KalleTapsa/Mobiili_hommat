@@ -17,6 +17,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -30,7 +32,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 data class Message(val author: String, val body: String)
 
@@ -88,32 +92,49 @@ fun MessageCard(msg: Message, navigateToScreenTwo: () -> Unit) {
 @Composable
 fun Conversation(
     messages: List<Message>,
-    navigateToScreenTwo: () -> Unit
+    navigateToScreenTwo: () -> Unit,
+    navigateToNotifications: () -> Unit
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
         modifier = Modifier.padding(bottom = 2.dp)
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-            modifier = Modifier.clickable { navigateToScreenTwo.invoke() }
-        ) {
-            Icon(painter = painterResource(id = R.drawable.baseline_person_24),
-                contentDescription = null,
+        Row {
+            Button(
+                onClick = navigateToNotifications,
+                shape = RoundedCornerShape(10.dp),
                 modifier = Modifier
-                    .size(75.dp)
-                    .padding(10.dp)
-                    .background(MaterialTheme.colorScheme.primary, CircleShape)
-            )
-            Spacer(modifier = Modifier.height(2.dp))
+                    .size(width = 125.dp, height = 65.dp)
+                    .padding(12.dp)
+            ) {
+                Text(
+                    text = "Sensor",
+                    style = MaterialTheme.typography.titleMedium.copy(fontSize = 15.sp),
+                    textAlign = TextAlign.Center
+                )
+            }
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+                modifier = Modifier.clickable { navigateToScreenTwo.invoke() }
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.baseline_person_24),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .size(75.dp)
+                        .padding(10.dp)
+                        .background(MaterialTheme.colorScheme.primary, CircleShape)
+                )
+                Spacer(modifier = Modifier.height(2.dp))
 
-            Text(
-                text = "Profile",
-                modifier = Modifier,
-                style = MaterialTheme.typography.titleSmall
-            )
+                Text(
+                    text = "Profile",
+                    modifier = Modifier,
+                    style = MaterialTheme.typography.titleSmall
+                )
+            }
         }
 
         LazyColumn {

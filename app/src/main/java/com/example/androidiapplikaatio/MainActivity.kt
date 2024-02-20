@@ -46,7 +46,8 @@ private val viewModel by viewModels<AccountViewModel>(
                     composable(route = Route.conversation) {
                         Conversation(
                             SampleData.conversationSample,
-                            navigateToScreenTwo = { navController.navigate(Route.Profile) }
+                            navigateToScreenTwo = { navController.navigate(Route.Profile) },
+                            navigateToNotifications = { navController.navigate(Route.Notifications) }
                         )
                     }
                     composable(route = Route.Profile) {
@@ -69,6 +70,9 @@ private val viewModel by viewModels<AccountViewModel>(
                     composable(route = Route.FriendsList) {
                         FriendsList(navigateBack = { navController.popBackStack(Route.Profile, false)}, state = state, onEvent = viewModel::onEvent)
                     }
+                    composable(route = Route.Notifications) {
+                        NotificationsScreen(navigateBack = { navController.popBackStack(Route.Profile, false)})
+                    }
                 }
             }
         }
@@ -78,4 +82,5 @@ object Route {
     const val conversation = "conversation"
     const val Profile = "Profile"
     const val FriendsList = "FriendsList"
+    const val Notifications = "Notifications"
 }

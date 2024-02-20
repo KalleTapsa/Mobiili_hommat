@@ -63,6 +63,12 @@ dependencies {
     implementation("com.google.android.libraries.mapsplatform.transportation:transportation-consumer:2.1.0")
     implementation(platform("androidx.compose:compose-bom:2023.08.00"))
     implementation("io.coil-kt:coil-compose:2.5.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.1")
+
+    implementation("com.google.dagger:hilt-android:2.40.5")
+    kapt("com.google.dagger:hilt-android-compiler:2.40.5")
+    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
+    kapt("androidx.hilt:hilt-compiler:1.0.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
