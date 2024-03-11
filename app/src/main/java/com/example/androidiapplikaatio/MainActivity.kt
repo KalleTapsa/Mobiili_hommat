@@ -1,11 +1,15 @@
 package com.example.androidiapplikaatio
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.androidiapplikaatio.ui.theme.AndroidiApplikaatioTheme
@@ -34,6 +38,11 @@ private val viewModel by viewModels<AccountViewModel>(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        /*if (!hasPermissions()) {
+            ActivityCompat.requestPermissions(
+                this, CAMERAX_PERMISSION, 0
+            )
+        }*/
         setContent {
             AndroidiApplikaatioTheme {
                 val navController = rememberNavController()
@@ -47,7 +56,8 @@ private val viewModel by viewModels<AccountViewModel>(
                         Conversation(
                             SampleData.conversationSample,
                             navigateToScreenTwo = { navController.navigate(Route.Profile) },
-                            navigateToNotifications = { navController.navigate(Route.Notifications) }
+                            navigateToNotifications = { navController.navigate(Route.Notifications) },
+                            navigateToCamera = { navController.navigate(Route.Camera) }
                         )
                     }
                     composable(route = Route.Profile) {
@@ -73,14 +83,32 @@ private val viewModel by viewModels<AccountViewModel>(
                     composable(route = Route.Notifications) {
                         NotificationsScreen(navigateBack = { navController.popBackStack(Route.Profile, false)})
                     }
+                    composable(route = Route.Camera) {
+                        CameraScreen(navigateBack = { navController.popBackStack(Route.Profile, false)})
+                    }
                 }
             }
         }
     }
+
+    /*private fun hasPermissions(): Boolean {
+        return CAMERAX_PERMISSION.all {
+            ContextCompat.checkSelfPermission(
+                applicationContext,
+                it
+            ) == PackageManager.PERMISSION_GRANTED
+        }
+    }
+    companion object {
+        private val CAMERAX_PERMISSION = arrayOf(
+            Manifest.permission.CAMERA,
+        )
+    }*/
 }
 object Route {
     const val conversation = "conversation"
     const val Profile = "Profile"
     const val FriendsList = "FriendsList"
     const val Notifications = "Notifications"
+    const val Camera = "Camera"
 }

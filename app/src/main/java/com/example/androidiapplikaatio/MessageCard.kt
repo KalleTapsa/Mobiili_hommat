@@ -93,7 +93,8 @@ fun MessageCard(msg: Message, navigateToScreenTwo: () -> Unit) {
 fun Conversation(
     messages: List<Message>,
     navigateToScreenTwo: () -> Unit,
-    navigateToNotifications: () -> Unit
+    navigateToNotifications: () -> Unit,
+    navigateToCamera: () -> Unit
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -110,7 +111,7 @@ fun Conversation(
             ) {
                 Text(
                     text = "Sensor",
-                    style = MaterialTheme.typography.titleMedium.copy(fontSize = 15.sp),
+                    style = MaterialTheme.typography.titleMedium.copy(fontSize = 14.sp),
                     textAlign = TextAlign.Center
                 )
             }
@@ -133,6 +134,19 @@ fun Conversation(
                     text = "Profile",
                     modifier = Modifier,
                     style = MaterialTheme.typography.titleSmall
+                )
+            }
+            Button(
+                onClick = navigateToCamera,
+                shape = RoundedCornerShape(10.dp),
+                modifier = Modifier
+                    .size(width = 125.dp, height = 65.dp)
+                    .padding(12.dp)
+            ) {
+                Text(
+                    text = "Camera",
+                    style = MaterialTheme.typography.titleMedium.copy(fontSize = 14.sp),
+                    textAlign = TextAlign.Center
                 )
             }
         }
